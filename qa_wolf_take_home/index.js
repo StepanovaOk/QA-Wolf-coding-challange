@@ -16,7 +16,7 @@ async function sortHackerNewsArticles() {
     return articleElements.map((article) => {
       const id = article.id;
       const timeElement = article.nextElementSibling.querySelector(".age a");
-      const time = timeElement ? timeElement.innerText : null;
+      const time = timeElement ? timeElement.getAttribute("title") : null;
       return { id, time };
     });
   });
