@@ -9,7 +9,6 @@ async function sortHackerNewsArticles() {
   // Go to Hacker News
   await page.goto("https://news.ycombinator.com/newest");
 
-  // Get articles
   const articles = await page.evaluate(() => {
     const articleElements = Array.from(
       document.querySelectorAll(".athing")
@@ -22,7 +21,6 @@ async function sortHackerNewsArticles() {
     });
   });
 
-  // Function to check if articles are sorted by time
   const isSorted = (articles) => {
     for (let i = 1; i < articles.length; i++) {
       if (new Date(articles[i - 1].time) < new Date(articles[i].time)) {
@@ -32,14 +30,12 @@ async function sortHackerNewsArticles() {
     return true;
   };
 
-  // Check if articles are sorted
   if (isSorted(articles)) {
     console.log("Articles are sorted correctly");
   } else {
     console.log("Articles are sorted incorrectly");
   }
 
-  // Close browser
   await browser.close();
 }
 
